@@ -29,12 +29,7 @@ module.exports = {
   // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
-    extensions: [".ts", ".tsx", ".js"],
-    alias: {
-      image: path.resolve(__dirname, "src/assets/image"),
-      svg: path.resolve(__dirname, "src/assets/svg"),
-      "@": path.resolve(__dirname, "src")
-    }
+    extensions: [".ts", ".tsx", ".js"]
   },
   // context: path.resolve(__dirname, "src"),
   module: {

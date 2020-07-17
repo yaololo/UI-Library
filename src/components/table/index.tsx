@@ -3,6 +3,7 @@ import { ITableProps } from "./interfaces";
 import { paginationChangeReducer } from "./preactReducer";
 import { StyledTable, StyledTr, StyledTHead } from "./styles";
 import TableBody from "./TableBody";
+import TablePagination from "./TablePagination";
 
 const Table = <T extends {}>(props: ITableProps<T>) => {
   const {
@@ -95,14 +96,14 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
           subComponent={subComponent}
         />
       </StyledTable>
-      {/* {withPagination && (
+      {withPagination && (
         <TablePagination
           currPage={paginationState.currPage}
           totalDataLength={tBodyData.length}
           defaultPageSize={defaultPageSize}
           onChange={handlePaginationChange}
         ></TablePagination>
-      )} */}
+      )}
     </div>
   );
 };

@@ -1,9 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  #root {
+  body {
     margin: 0;
     padding: 0;
+  }
+  #root {
     width: auto;
     height: 100%;
     overflow: auto;

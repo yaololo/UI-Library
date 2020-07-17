@@ -79,3 +79,10 @@ export interface IRowRendererProps<T> {
   subComponent?: SubComponent<T>;
   rowData: ITBody<T>;
 }
+
+export interface ITablePaginationProps {
+  currPage: number;
+  totalDataLength: number;
+  defaultPageSize?: number;
+  onChange: (pageNumber: number, pageSize: number) => void;
+}

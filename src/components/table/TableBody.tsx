@@ -14,20 +14,6 @@ import {
   IRowRendererProps
 } from "./interfaces";
 
-/**
- * @typedef {import('./interfaces').IProps} TableProps
- * @typedef {TableProps["tBodyData"]} TBodyData
- * @typedef {TableProps["tHeaderData"]} THeaderData
- * @typedef {TableProps["subComponent"]} SubComponent
- * @typedef {import('./interfaces').ITBodyProps} TBodyProps
- * @typedef {import('./interfaces').ExpenderPosition} ExpenderPosition
- */
-
-/**
- * @typedef {import("preact/hooks/src").StateUpdater<T>} StateUpdater
- * @template T
- */
-
 const EmptyView = (props: { noOfColumns: number }) => {
   return (
     <StyledEmptyViewWrapper>
@@ -63,9 +49,6 @@ const RowRenderer = <T extends {}>(rowProps: IRowRendererProps<T>) => {
     subComponent
   } = rowProps;
 
-  /**
-   *@type {[boolean, StateUpdater<boolean>]}
-   */
   const [isExpanded, setIsExpandState] = useState(false);
 
   const handleExpanderClick = () => {
