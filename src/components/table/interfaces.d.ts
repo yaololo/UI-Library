@@ -19,7 +19,7 @@ interface IPageChange {
 
 export type ExpenderPosition = "front" | "behind";
 
-export interface ITableProps<T extends {}> {
+export interface ITableProps<T extends { [x: string]: any }> {
   tHeaderData: Array<ITHeader<T>>;
   tBodyData: Array<ITBody<T>>;
   role?: string;
@@ -40,7 +40,7 @@ export interface ITHeader<T> {
   colSpan?: number;
   rolSpan?: number;
   title: string;
-  dataIndex: keyof T;
+  dataIndex: Extract<keyof T, string>;
   render?: (record: ITBody<T>) => preact.VNode;
 }
 
@@ -48,7 +48,7 @@ export type ITBody<T> = {
   key: preact.Key;
   colSpan?: number;
   rolSpan?: number;
-} & Partial<T>;
+} & Required<T>;
 
 export type ChildElements = Array<preact.VNode> | preact.VNode | null;
 
