@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, Fragment } from "react";
 import { ITableProps } from "./interfaces";
 import { paginationChangeReducer } from "./preactReducer";
-import { StyledTable, Row, StyledTHead } from "./styles";
+import { StyledTable, StyledTr, StyledTHead } from "./styles";
 import TableBody from "./TableBody";
 
 const Table = <T extends {}>(props: ITableProps<T>) => {
@@ -64,7 +64,7 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
         bodyAlignment={bodyAlignment}
       >
         <StyledTHead>
-          <Row className={tablePreCls + "head-tr"}>
+          <StyledTr className={tablePreCls + "head-tr"}>
             {subComponent && expandIconPosition === "front" && (
               <th className="table-expander"></th>
             )}
@@ -82,7 +82,7 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
             {subComponent && expandIconPosition === "behind" && (
               <th className="table-expander"></th>
             )}
-          </Row>
+          </StyledTr>
         </StyledTHead>
         <TableBody
           tBodyData={

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import {
-  Row,
+  StyledTr,
   StyledExpander,
   StyledSubComponentRow,
   StyledExpanderWrapper,
@@ -79,7 +79,7 @@ const RowRenderer = <T extends {}>(rowProps: IRowRendererProps<T>) => {
 
   return (
     <Fragment>
-      <Row className="body-tr">
+      <StyledTr className="body-tr">
         {subComponent && expandIconPosition === "front" && (
           <td className="table-expander">
             <StyledExpander onClick={handleExpanderClick}>
@@ -109,7 +109,7 @@ const RowRenderer = <T extends {}>(rowProps: IRowRendererProps<T>) => {
             )}
           </td>
         )}
-      </Row>
+      </StyledTr>
       <SubComponent
         tablePreCls={tablePreCls}
         subComponent={subComponent}

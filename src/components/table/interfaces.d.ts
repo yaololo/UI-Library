@@ -79,13 +79,3 @@ export interface IRowRendererProps<T> {
   subComponent?: SubComponent<T>;
   rowData: ITBody<T>;
 }
-
-type a<T> = {
-  dataIndex: keyof T;
-};
-
-type ss = {
-  ss: "string";
-  tt: "string";
-};
-type C = keyof ss;

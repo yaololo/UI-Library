@@ -21,7 +21,7 @@ export const StyledTable = styled.table<{
   }
 `;
 
-export const Row = styled.tr<{}>`
+export const StyledTr = styled.tr<{}>`
   td {
     padding: 20px 0;
   }
@@ -31,7 +31,7 @@ export const Row = styled.tr<{}>`
   }
 `;
 
-export const StyledSubComponentRow = styled(Row as "tr")<{
+export const StyledSubComponentRow = styled(StyledTr as "tr")<{
   isExpanded: boolean;
 }>`
   display: ${(props) => (props.isExpanded ? "auto" : "none")};

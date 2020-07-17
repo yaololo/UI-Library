@@ -2,8 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   #root {
-    width: 100vw;
-    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100%;
     overflow: auto;
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
