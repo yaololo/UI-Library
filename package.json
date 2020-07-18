@@ -5,17 +5,19 @@
   "license": "MIT",
   "proxy": "http://localhost:5000",
   "author": "zhuang yongming",
+  "sideEffects": false,
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "dev": "webpack-dev-server --mode development --hot",
+    "dev": "webpack-dev-server --env.NODE_ENV=development --progress --open",
     "start": "webpack-dev-server --mode production",
-    "build": "webpack --mode production"
+    "build": "webpack -p --env.NODE_ENV=production --progress"
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.3",
     "@types/styled-components": "^4.4.1",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.3",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
@@ -39,6 +41,7 @@
     "ts-loader": "^6.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "mini-css-extract-plugin": "^0.9.0",
+    "clean-webpack-plugin": "^3.0.0"
   }
 }
