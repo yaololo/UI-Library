@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, Fragment } from "react";
 import { ITableProps } from "./interfaces";
-import { paginationChangeReducer } from "./preactReducer";
+import { paginationChangeReducer } from "./reducers";
 import { StyledTable, StyledTr, StyledTHead } from "./styles";
 import TableBody from "./TableBody";
 import TablePagination from "./TablePagination";
@@ -16,7 +16,7 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
     expandIconPosition = "behind",
     withPagination,
     defaultPageSize = 10,
-    subComponent
+    subComponent,
   } = props;
 
   const tablePreCls = tableClassPrefix ? tableClassPrefix + "-" : "";
@@ -24,13 +24,10 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
 
   const initPaginationState = {
     currPage: 1,
-    currPageData: tBodyData?.slice(0, defaultPageSize)
+    currPageData: tBodyData?.slice(0, defaultPageSize),
   };
 
-  const [paginationState, dispatch] = useReducer(
-    paginationChangeReducer,
-    initPaginationState
-  );
+  const [paginationState, dispatch] = useReducer(paginationChangeReducer, initPaginationState);
 
   const handlePaginationChange = (pageNumber: number, pageSize: number) => {
     dispatch({
@@ -38,8 +35,8 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
       payload: {
         tBodyData,
         currPage: pageNumber,
-        pageSize
-      }
+        pageSize,
+      },
     });
   };
 
@@ -50,8 +47,8 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
         payload: {
           tBodyData: tBodyData,
           currPage: 1,
-          pageSize: defaultPageSize
-        }
+          pageSize: defaultPageSize,
+        },
       });
     }
   }, [JSON.stringify(tBodyData)]);
@@ -62,13 +59,10 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
         role={role}
         className={tablePreCls + "customized-table"}
         headerAlignment={headerAlignment}
-        bodyAlignment={bodyAlignment}
-      >
+        bodyAlignment={bodyAlignment}>
         <StyledTHead>
           <StyledTr className={tablePreCls + "head-tr"}>
-            {subComponent && expandIconPosition === "front" && (
-              <th className="table-expander"></th>
-            )}
+            {subComponent && expandIconPosition === "front" && <th className="table-expander"></th>}
             {tHeaderData.map((item) => {
               const { key, title } = item;
 
@@ -80,15 +74,11 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
                 </Fragment>
               );
             })}
-            {subComponent && expandIconPosition === "behind" && (
-              <th className="table-expander"></th>
-            )}
+            {subComponent && expandIconPosition === "behind" && <th className="table-expander"></th>}
           </StyledTr>
         </StyledTHead>
         <TableBody
-          tBodyData={
-            (withPagination && paginationState.currPageData) || tBodyData
-          }
+          tBodyData={(withPagination && paginationState.currPageData) || tBodyData}
           tHeaderData={tHeaderData}
           noOfColumns={noOfColumns}
           tablePreCls={tablePreCls}
@@ -101,8 +91,7 @@ const Table = <T extends {}>(props: ITableProps<T>) => {
           currPage={paginationState.currPage}
           totalDataLength={tBodyData.length}
           defaultPageSize={defaultPageSize}
-          onChange={handlePaginationChange}
-        ></TablePagination>
+          onChange={handlePaginationChange}></TablePagination>
       )}
     </div>
   );
