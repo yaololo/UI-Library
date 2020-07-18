@@ -14,10 +14,9 @@ module.exports = (env) => {
     devtool: "inline-source-map", // debugging
     mode: devMode ? "development" : "production",
     devServer: {
-      contentBase: "./dist",
+      contentBase: "/dist",
       port: port ? port : 3000,
       historyApiFallback: true,
-      publicPath: "/",
     },
 
     // and output it into /dist as bundle.js
@@ -29,7 +28,7 @@ module.exports = (env) => {
       // `path` is the folder where Webpack will place your bundles
       path: path.join(__dirname, "/dist"),
       // `publicPath` is where Webpack will load your bundles from (optional)
-      publicPath: "dist/",
+      // publicPath: "dist",
     },
 
     // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
