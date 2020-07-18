@@ -1,12 +1,11 @@
-/* eslint-disable no-undef */
-import { resolve as _resolve, join } from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-export default (env) => {
+module.exports = (env) => {
   const devMode = env.NODE_ENV !== "production";
-  const loaderPath = _resolve(__dirname, "src");
+  const loaderPath = path.resolve(__dirname, "src");
   const port = process.env.PORT;
 
   return {
@@ -27,14 +26,14 @@ export default (env) => {
       // `chunkFilename` provides a template for naming code-split bundles (optional)
       chunkFilename: "[name].bundle.js",
       // `path` is the folder where Webpack will place your bundles
-      path: join(__dirname, "/dist")
+      path: path.join(__dirname, "/dist")
       // `publicPath` is where Webpack will load your bundles from (optional)
       // publicPath: "dist",
     },
 
     // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
     resolve: {
-      modules: [_resolve(__dirname, "src"), "node_modules"],
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
       extensions: [".ts", ".tsx", ".js"]
     },
     module: {
