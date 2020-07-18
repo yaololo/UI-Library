@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const { readFileSync } = require("fs");
 let msg = readFileSync(process.argv[2]).toString();
 
