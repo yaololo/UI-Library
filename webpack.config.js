@@ -1,11 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+/* eslint-disable no-undef */
+import { resolve as _resolve, join } from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-module.exports = (env) => {
+export default (env) => {
   const devMode = env.NODE_ENV !== "production";
-  const loaderPath = path.resolve(__dirname, "src");
+  const loaderPath = _resolve(__dirname, "src");
   const port = process.env.PORT;
 
   return {
@@ -16,7 +17,7 @@ module.exports = (env) => {
     devServer: {
       contentBase: "/dist",
       port: port ? port : 3000,
-      historyApiFallback: true,
+      historyApiFallback: true
     },
 
     // and output it into /dist as bundle.js
@@ -26,15 +27,15 @@ module.exports = (env) => {
       // `chunkFilename` provides a template for naming code-split bundles (optional)
       chunkFilename: "[name].bundle.js",
       // `path` is the folder where Webpack will place your bundles
-      path: path.join(__dirname, "/dist"),
+      path: join(__dirname, "/dist")
       // `publicPath` is where Webpack will load your bundles from (optional)
       // publicPath: "dist",
     },
 
     // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
     resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
-      extensions: [".ts", ".tsx", ".js"],
+      modules: [_resolve(__dirname, "src"), "node_modules"],
+      extensions: [".ts", ".tsx", ".js"]
     },
     module: {
       rules: [
@@ -43,22 +44,22 @@ module.exports = (env) => {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
-          },
+            loader: "babel-loader"
+          }
         },
 
         // css-loader to bundle all the css files into one file and style-loader to add all the styles inside the style tag of the document
         {
           test: /\.css$/,
           use: ["style-loader", "css-loader"],
-          sideEffects: true,
+          sideEffects: true
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
           include: loaderPath,
-          use: ["file-loader"],
-        },
-      ],
+          use: ["file-loader"]
+        }
+      ]
     },
     optimization: {
       splitChunks: {
@@ -68,21 +69,21 @@ module.exports = (env) => {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: "vendors",
-            chunks: "all",
-          },
-        },
+            chunks: "all"
+          }
+        }
       },
-      runtimeChunk: "single", // Split runtime code into a separate chunk, the bare minimum file to get the app running, other thing into chunks
+      runtimeChunk: "single" // Split runtime code into a separate chunk, the bare minimum file to get the app running, other thing into chunks
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "./src/index.html",
+        template: "./src/index.html"
       }),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: devMode ? "[name].css" : "[name].[hash].css",
-        chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
-      }),
-    ],
+        chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
+      })
+    ]
   };
 };
