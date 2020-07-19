@@ -12,7 +12,7 @@
     "dev": "webpack-dev-server --env.NODE_ENV=development --progress --open",
     "start": "webpack-dev-server --mode production",
     "build": "webpack -p --env.NODE_ENV=production --progress",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.3",
@@ -21,6 +21,7 @@
     "@typescript-eslint/parser": "^3.6.1",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "husky": "^4.2.5",

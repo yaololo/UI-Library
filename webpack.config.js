@@ -42,9 +42,19 @@ module.exports = (env) => {
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
+          use: [
+            {
+              loader: "babel-loader"
+            },
+            {
+              loader: "eslint-loader",
+              options:{
+                cache: true,
+                emitWarning: true,
+                failOnError: true,
+              }
+            }
+          ]
         },
 
         // css-loader to bundle all the css files into one file and style-loader to add all the styles inside the style tag of the document
